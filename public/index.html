@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Twinebook - Twine games as printable PDF gamebooks</title>
+  <style type="text/css">
+    @font-face{
+      font-family:"Raleway";
+      font-style:normal;
+      font-weight:400;
+      src:local("Raleway"), local("Raleway-Regular"), url(https://danq.me/wp-content/themes/q18/fonts/raleway-v11-latin-regular.woff2) format("woff2"), url(https://danq.me/wp-content/themes/q18/fonts/raleway-v11-latin-regular.woff) format("woff");
+      font-display:swap
+    }
+    @font-face{font-family:"Raleway";
+      font-style:italic;
+      font-weight:400;
+      src:local("Raleway Italic"), local("Raleway-Italic"), url(https://danq.me/wp-content/themes/q18/fonts/raleway-v11-latin-italic.woff2) format("woff2"), url(https://danq.me/wp-content/themes/q18/fonts/raleway-v11-latin-italic.woff) format("woff");
+      font-display:swap
+    }
+    @font-face{font-family:"Raleway";
+      font-style:normal;
+      font-weight:700;
+      src:local("Raleway Bold"), local("Raleway-Bold"), url(https://danq.me/wp-content/themes/q18/fonts/raleway-v11-latin-700.woff2) format("woff2"), url(https://danq.me/wp-content/themes/q18/fonts/raleway-v11-latin-700.woff) format("woff");
+      font-display:swap
+    }
+    body {
+      margin: 0;
+      background: #fff;
+      line-height: 1.5;
+    }
+    header, main, footer {
+      padding: 0.5rem 1rem;
+    }
+    header, footer {
+      background: #eee;
+    }
+    footer {
+      font-size: 80%;
+    }
+    body, input, select, textarea {
+      font-family: 'Raleway', sans-serif;
+    }
+    input, select, textarea {
+      font-size: 100%;
+    }
+    form {
+      display: grid;
+      grid-template-columns: repeat(2, max-content);
+      grid-gap: 0.5rem;
+      align-items: center;
+    }
+    label {
+      font-weight: bold;
+      text-align: right;
+    }
+    input[type='text'] {
+      min-width: 42em;
+    }
+    input[type='submit'] {
+      grid-column: 1/3;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Twinebook</h1>
+  </header>
+  <main>
+    <section>
+      <h2>Convert a Twine game to a gamebook</h2>
+      <form action="/" method="post" enctype="multipart/form-data">
+        <label for="format">Output format:</label>
+        <select name="format" id="format">
+          <option value="html">HTML</option>
+          <option value="pdf" selected>PDF</option>
+        </select>
+
+        <label for="style">Style:</label>
+        <select name="style" id="style">
+          <option value="default" selected>Default</option>
+        </select>
+
+        <label for="link_text">Link text format:</label>
+        <input type="text" name="link_text" id="link_text" value="{{text}} (turn to <strong>{{link}}</strong>)" style="font-family: monospace;">
+
+        <label for="story_file">Story file:</label>
+        <input type="file" name="story_file">
+
+        <input type="submit" value="Upload">
+      </form>
+    </section>
+    <section>
+      <h2>How to use this tool</h2>
+      <ol>
+        <li>
+          Use <a href="https://twinery.org/">Twine</a> to write an adventure:
+          <ul>
+            <li>
+              Don't use any features that don't translate to print media: e.g. video, custom javascript, etc.
+            </li>
+            <li>
+              Use Markdown to format your text.
+            </li>
+            <li>
+              Consider putting links at the bottom of each passage and wording them appropriately, e.g.
+              <code>
+                Do you [[fight the orc->fight]] or [[run away->run]].
+              </code>
+              Twinebook will add text after each link e.g. <code>(turn to 17)</code> for you.
+            </li>          
+          </ul>
+        </li>
+        <li>
+          When you're happy with your story, use "Publish to file" to make a HTML file.
+        </li>
+        <li>
+          Upload that HTML file using the form above to receive a printable "gamebook" version!
+        </li>
+        <li>
+          The passage marked "start story here" will always be the first entry in your gamebook. The other
+          passages will be shuffled randomly.
+        </li>
+      </ol>
+    </section>
+    <section>
+      <h2>Advanced usage</h2>
+      <ul>
+        <li>
+          If making a PDF version for screen (rather than print) use, set the link text format to <code>{{text}} (turn to &lt;strong&gt;&lt;a href="#{{link}}"&gt;{{link}}&lt;/a&gt;&lt;/strong&gt;)</code> to make passage cross-references clickable.
+        </li>
+        <li>
+          To create chapters before or after the "gamebook" portion (e.g. instructions, glossary of spells, etc.), create passages disconnected from the main story and give them the tag <code>twinebook-pre</code> or <code>twinebook-post</code> respectively. You should probably start these passages with a <code>&lt;h2&gt;</code>/<code>##</code> heading.
+        </li>
+        <li>
+          Force a passage to be placed at a particular number by giving the tag <code>always-123</code> (where <code>123</code>is the number you want it to have): this is useful for if you have puzzles of the form "If you know the code to the safe, turn to that passage number: if it begins with the words 'The safe clicks open...' you're correct; otherwise carry on reading this passage." It can also be useful if you want to force the "good" ending to appear at the end of the book. Take care to ensure that you don't specify a value higher than the number of passages your story has.
+        </li>
+      </ul>
+    </section>
+  </main>
+  <footer>
+    An
+    <a href="https://github.com/Dan-Q/twinebook">open source</a>
+    <a href="https://things.danq.me/">thing</a>
+    by
+    <a href="https://danq.me/">Dan Q</a>
+  </footer>
+</body>
+</html>

@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title><%= @name %></title>
+    <style>
+      <%= @css %>
+    </style>
+  </head>
+  <body>
+    <section class="title-page">
+      <h1><%= @name %></h1>
+      <p>
+        Print version generated using Twinebook by Dan Q.
+      </p>
+    </section>
+    <%= @special_pre_passages.map(&:output).join("\n") %>
+    <%= @passages.map(&:output).join("\n") %>
+    <%= @special_post_passages.map(&:output).join("\n") %>
+  </body>
+</html>

@@ -1,0 +1,30 @@
+body {
+  font-size: 22px;
+}
+
+.title-page p {
+  text-align: center;
+  font-size: 80%;
+  margin-top: 24rem;
+}
+
+.title-page, .twinebook-pre, .twinebook-post {
+  page-break-after: always;
+  page-break-before: always;
+}
+
+h1 {
+  font-size: 48px;
+}
+
+h1, h2 {
+  text-align: center;
+}
+
+section {
+  page-break-inside: avoid;
+}
+
+p {
+  text-align: justify;
+}

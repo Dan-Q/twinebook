@@ -1,0 +1,8 @@
+<section class="<%= @tags.join(' ') %>" id="<%= @title %>">
+  <% if @title %>
+    <h2><%= @title %></h2>
+  <% end %>
+  <div class="section-content">
+    <%= rendered_content %>
+  </div>
+</section>
