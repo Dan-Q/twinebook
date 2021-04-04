@@ -1,6 +1,6 @@
 ## Twinebook
 
-Product printable PDF gamesbooks from simple Twine hypertext games. Prototype. Available online at https://twinebook.danq.dev/.
+Produce printable PDF gamesbooks from simple Twine hypertext games. Prototype. Available online at https://twinebook.danq.dev/.
 
 ### Purpose
 
