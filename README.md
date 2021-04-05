@@ -8,6 +8,8 @@ Produce printable PDF gamesbooks from simple Twine hypertext games. Prototype. A
 
 Produce a simple game using Twine 2, export is as a playable HTML file, and then run it through Twinebook to produce a PDF version of your adventure, complete with "turn to 26"-style cross-references instead of hyperlinks.
 
+See also [an explanatory blog post](https://danq.me/2021/04/05/twinebook/).
+
 ### Usage
 
 You can use this tool at https://twinebook.danq.dev/.
